@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:hangman_flutter_project/widgets/category_card.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:hangman_flutter_project/widgets/category_card.dart';
+import 'package:hangman_flutter_project/game_mechanism/categories.dart';
+import 'package:hangman_flutter_project/constants/constants.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
+
+  static const String id = 'categories_screen';
 
   @override
   Widget build(BuildContext context) {
@@ -11,9 +15,7 @@ class CategoriesScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: DefaultTextStyle(
-          style: const TextStyle(
-            fontFamily: 'PressStart2P',
-          ),
+          style: kAppBarTextStyle,
           child: AnimatedTextKit(
             repeatForever: true,
             animatedTexts: [
@@ -32,59 +34,45 @@ class CategoriesScreen extends StatelessWidget {
           CategoryCard(
             title: 'FRUITS',
             picture: 'strawberry.png',
+            category: Category.fruits,
           ),
           CategoryCard(
             title: 'VEGETABLES',
             picture: 'carrot.png',
+            category: Category.vegetables,
           ),
           CategoryCard(
             title: 'SCHOOL',
             picture: 'school.png',
+            category: Category.school,
           ),
           CategoryCard(
             title: 'COUNTRIES',
             picture: 'countries.png',
+            category: Category.countries,
           ),
           CategoryCard(
             title: 'SPORTS',
             picture: 'sport.png',
+            category: Category.sports,
           ),
           CategoryCard(
             title: 'MOVIES',
             picture: 'movie.png',
+            category: Category.movies,
           ),
           CategoryCard(
             title: 'FAMOUS CHARACTERS',
             picture: 'actor.png',
+            category: Category.famousCharacters,
           ),
           CategoryCard(
             title: 'PROFESSIONS',
             picture: 'profession.png',
+            category: Category.professions,
           ),
         ],
       ),
     );
   }
 }
-
-// const Row(
-// crossAxisAlignment: CrossAxisAlignment.stretch,
-// children: [
-// Expanded(
-// child: Column(
-// children: [
-// Expanded(child: CategoryCard()),
-// Expanded(child: CategoryCard()),
-// ],
-// ),
-// ),
-// Expanded(
-// child: Column(
-// children: [
-// Expanded(child: CategoryCard()),
-// Expanded(child: CategoryCard()),
-// ],
-// ),
-// )
-// ],
-// ),

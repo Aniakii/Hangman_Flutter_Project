@@ -9,15 +9,17 @@ class CategoryCard extends StatelessWidget {
   final String title;
   final Category category;
 
-  CategoryCard(
-      {required this.title, required this.picture, required this.category});
+  CategoryCard({
+    required this.title,
+    required this.picture,
+    required this.category,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Card(
         elevation: 10.0,
-        // color: kCardColor,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(

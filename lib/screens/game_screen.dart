@@ -3,8 +3,9 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:provider/provider.dart';
 import 'package:hangman_flutter_project/screens/categories_screen.dart';
 import 'package:hangman_flutter_project/game_mechanism/game_brain.dart';
+import 'package:hangman_flutter_project/game_mechanism/categories.dart';
 import 'package:hangman_flutter_project/widgets/letter_button.dart';
-import 'package:hangman_flutter_project/constants/constants.dart';
+import 'package:hangman_flutter_project/constants/constants_widgets.dart';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({super.key});
@@ -16,10 +17,33 @@ class GameScreen extends StatefulWidget {
 }
 
 class _GameScreenState extends State<GameScreen> {
+  String getCategoryName() {
+    switch (Provider.of<GameBrain>(context, listen: false).category) {
+      case Category.countries:
+        return "COUNTRIES";
+      case Category.famousCharacters:
+        return "FAMOUS CHARACTERS";
+      case Category.fruits:
+        return "FRUITS";
+      case Category.vegetables:
+        return "VEGETABLES";
+      case Category.sports:
+        return "SPORTS";
+      case Category.school:
+        return "SCHOOL";
+      case Category.movies:
+        return "MOVIES";
+      case Category.professions:
+        return "PROFESSIONS";
+      default:
+        return "";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     int mistakes = Provider.of<GameBrain>(context, listen: false).mistakes;
-
+    String categoryName = getCategoryName();
     return WillPopScope(
       onWillPop: () async {
         Provider.of<GameBrain>(context, listen: false).resetGame();
@@ -35,6 +59,7 @@ class _GameScreenState extends State<GameScreen> {
               repeatForever: true,
               animatedTexts: [
                 RotateAnimatedText('H A N G M A N', transitionHeight: 25.0),
+                RotateAnimatedText(categoryName, transitionHeight: 25.0),
               ],
             ),
           ),

@@ -4,7 +4,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:provider/provider.dart';
 import 'package:hangman_flutter_project/screens/game_screen.dart';
 import 'package:hangman_flutter_project/game_mechanism/game_brain.dart';
-import 'package:hangman_flutter_project/constants/constants.dart';
+import 'package:hangman_flutter_project/constants/constants_widgets.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});

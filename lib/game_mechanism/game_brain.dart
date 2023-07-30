@@ -1,26 +1,18 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 import 'categories.dart';
 import 'word_to_guess.dart';
-import 'game_data.dart';
+import 'game_data_from_assets.dart';
 import 'custom_letter.dart';
+import 'game_brain_functions.dart';
 
-enum GameStatus {
-  win,
-  loose,
-  playing,
-}
-
-class GameBrain extends ChangeNotifier {
-  final List<CustomLetter> alphabetList = List.generate(26, (index) {
-    return CustomLetter(String.fromCharCode('A'.codeUnitAt(0) + index));
-  });
-
+class GameBrain extends ChangeNotifier with GameBrainFunctionality {
   int _mistakes = 0;
   GameStatus _gameStatus = GameStatus.playing;
   List<String> _words = [];
   final WordToGuess _wordToGuess = WordToGuess();
-  late Category chosenCategory;
-  late GameData _gameData;
+  late Category _chosenCategory;
+  late GameDataFromAssets _gameData;
 
   String get encryptedWord {
     return _wordToGuess.displayedWord;
@@ -34,22 +26,32 @@ class GameBrain extends ChangeNotifier {
     return _gameStatus;
   }
 
-  void chooseCategory(Category category) {
-    chosenCategory = category;
+  Category get category {
+    return _chosenCategory;
   }
 
+  @override
+  void chooseCategory(Category category) {
+    _chosenCategory = category;
+  }
+
+  @override
   Future<void> getData() async {
     _mistakes = 0;
     _gameStatus = GameStatus.playing;
-    _gameData = GameData(chosenCategory);
+    _gameData = GameDataFromAssets(_chosenCategory);
     _words = await _gameData.getWords();
     notifyListeners();
   }
 
+  @override
   void drawWord() {
-    _wordToGuess.getWord(_words);
+    int wordsAmount = _words.length;
+    int randomWordIndex = Random().nextInt(wordsAmount);
+    _wordToGuess.getWord(_words[randomWordIndex]);
   }
 
+  @override
   void guessLetter(String letter) {
     if (_gameStatus == GameStatus.playing) {
       if (_wordToGuess.guessLetter(letter)) {
@@ -66,11 +68,13 @@ class GameBrain extends ChangeNotifier {
     }
   }
 
+  @override
   void toggleLetter(CustomLetter letter) {
     letter.updateState();
     notifyListeners();
   }
 
+  @override
   void resetGame() {
     _mistakes = 0;
     _gameStatus = GameStatus.playing;

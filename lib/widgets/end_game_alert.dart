@@ -3,7 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:hangman_flutter_project/screens/categories_screen.dart';
 import 'package:hangman_flutter_project/game_mechanism/game_brain.dart';
-import 'package:hangman_flutter_project/constants/constants.dart';
+import 'package:hangman_flutter_project/constants/constants_widgets.dart';
+import 'package:hangman_flutter_project/constants/constants_alerts_texts.dart';
 
 class EndGameAlert extends StatelessWidget {
   final String title;
@@ -26,7 +27,7 @@ class EndGameAlert extends StatelessWidget {
         DialogButton(
             color: kAppBarColor,
             child: const Text(
-              'PLAY AGAIN',
+              kPlayText,
               textAlign: TextAlign.center,
             ),
             onPressed: () {
@@ -36,7 +37,7 @@ class EndGameAlert extends StatelessWidget {
         DialogButton(
             color: kAppBarColor,
             child: const Text(
-              'GO TO MENU',
+              kMenuText,
               textAlign: TextAlign.center,
             ),
             onPressed: () {

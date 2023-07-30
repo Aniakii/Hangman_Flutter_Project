@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:hangman_flutter_project/widgets/category_card.dart';
 import 'package:hangman_flutter_project/game_mechanism/categories.dart';
-import 'package:hangman_flutter_project/constants/constants.dart';
+import 'package:hangman_flutter_project/constants/constants_widgets.dart';
+import 'package:hangman_flutter_project/constants/constants_images.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
@@ -33,42 +34,42 @@ class CategoriesScreen extends StatelessWidget {
         children: [
           CategoryCard(
             title: 'FRUITS',
-            picture: 'strawberry.png',
+            picture: kFruitsImage,
             category: Category.fruits,
           ),
           CategoryCard(
             title: 'VEGETABLES',
-            picture: 'carrot.png',
+            picture: kVegetablesImage,
             category: Category.vegetables,
           ),
           CategoryCard(
             title: 'SCHOOL',
-            picture: 'school.png',
+            picture: kSchoolImage,
             category: Category.school,
           ),
           CategoryCard(
             title: 'COUNTRIES',
-            picture: 'countries.png',
+            picture: kCountriesImage,
             category: Category.countries,
           ),
           CategoryCard(
             title: 'SPORTS',
-            picture: 'sport.png',
+            picture: kSportImage,
             category: Category.sports,
           ),
           CategoryCard(
             title: 'MOVIES',
-            picture: 'movie.png',
+            picture: kMoviesImage,
             category: Category.movies,
           ),
           CategoryCard(
             title: 'FAMOUS CHARACTERS',
-            picture: 'actor.png',
+            picture: kFamousCharactersImage,
             category: Category.famousCharacters,
           ),
           CategoryCard(
             title: 'PROFESSIONS',
-            picture: 'profession.png',
+            picture: kProfessionsImage,
             category: Category.professions,
           ),
         ],

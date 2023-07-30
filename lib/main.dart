@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'screens/categories_screen.dart';
 import 'screens/game_screen.dart';
 import 'screens/loading_screen.dart';
-import 'constants/constants.dart';
+import 'constants/constants_widgets.dart';
 import 'game_mechanism/game_brain.dart';
 
 void main() {

@@ -1,20 +1,24 @@
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:hangman_flutter_project/constants/constants_files.dart';
 import 'categories.dart';
+import 'game_data_functions.dart';
 
-class GameData {
+class GameDataFromAssets extends GameData {
   late Category chosenCategory;
   late String _fileName;
   List<String> words = [];
 
-  GameData(this.chosenCategory);
+  GameDataFromAssets(this.chosenCategory);
 
+  @override
   Future<List<String>> getWords() async {
     _getFileName();
-    await _loadWords();
+    await loadWords();
     return words;
   }
 
-  Future<void> _loadWords() async {
+  @override
+  Future<void> loadWords() async {
     try {
       String filePath = 'assets/words_base/$_fileName';
       String fileContent = await rootBundle.loadString(filePath);
@@ -27,28 +31,28 @@ class GameData {
   void _getFileName() {
     switch (chosenCategory) {
       case Category.countries:
-        _fileName = "countries.txt";
+        _fileName = kCountriesBase;
         break;
       case Category.famousCharacters:
-        _fileName = "famous_characters.txt";
+        _fileName = kFamousCharactersBase;
         break;
       case Category.fruits:
-        _fileName = "fruits.txt";
+        _fileName = kFruitsBase;
         break;
       case Category.vegetables:
-        _fileName = "vegetables.txt";
+        _fileName = kVegetablesBase;
         break;
       case Category.sports:
-        _fileName = "sports.txt";
+        _fileName = kSportBase;
         break;
       case Category.school:
-        _fileName = "school.txt";
+        _fileName = kSchoolBase;
         break;
       case Category.movies:
-        _fileName = "movies.txt";
+        _fileName = kMoviesBase;
         break;
       case Category.professions:
-        _fileName = "professions.txt";
+        _fileName = kProfessionsBase;
         break;
       default:
         _fileName = "";
